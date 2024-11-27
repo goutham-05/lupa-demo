@@ -1,39 +1,30 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider
-} from "@react-navigation/native";
-import { useFonts } from "expo-font";
-import { Slot, Stack } from "expo-router";
-import * as SplashScreen from "expo-splash-screen";
-import { StatusBar } from "expo-status-bar";
-import { useEffect } from "react";
-import "react-native-reanimated";
-
-import { useColorScheme } from "@/hooks/useColorScheme";
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+import React, { useEffect } from "react";
+import { Slot, Stack, useRouter } from "expo-router";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf")
-  });
+  const [isOnboardingCompleted, setIsOnboardingCompleted] = React.useState<
+    boolean | null
+  >(null); // Use null to handle the loading state
+  const router = useRouter();
 
   useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
+    const checkOnboarding = async () => {
+      const completed = false; // await AsyncStorage.getItem("onboardingCompleted") === "true";
+      setIsOnboardingCompleted(completed);
+    };
+    checkOnboarding();
+  }, []);
 
-  if (!loaded) {
-    return null;
+  useEffect(() => {
+    if (isOnboardingCompleted === false) {
+      router.replace("/(onboarding)/onboarding");
+    }
+  }, [isOnboardingCompleted]);
+
+  if (isOnboardingCompleted === null) {
+    return null; // Can replace with a loading spinner or splash screen
   }
 
-  return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Slot />
-    </ThemeProvider>
-  );
+  return <Slot />;
 }
