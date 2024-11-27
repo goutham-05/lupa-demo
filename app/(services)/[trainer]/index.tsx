@@ -7,7 +7,7 @@ import {
   ScrollView,
   TouchableOpacity
 } from "react-native";
-import { useLocalSearchParams, useNavigation } from "expo-router";
+import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MapView, { Marker } from "react-native-maps";
 import { trainers } from "@/constants/MockData";
@@ -15,6 +15,8 @@ import { trainers } from "@/constants/MockData";
 export default function TrainerDetailsScreen() {
   const { trainer } = useLocalSearchParams(); // Access trainer ID from route params
   const navigation = useNavigation();
+
+  const router = useRouter();
 
   // Find the trainer based on the ID
   const trainerDetails = trainers.find((t) => t.id === trainer) || {
@@ -104,7 +106,15 @@ export default function TrainerDetailsScreen() {
         </View>
 
         {/* Contact Section */}
-        <TouchableOpacity style={styles.contactButton}>
+        <TouchableOpacity
+          style={styles.contactButton}
+          onPress={() =>
+            router.push({
+              pathname: `/[trainer]/booking`,
+              params: { trainer: trainerDetails.name }
+            })
+          }
+        >
           <Text style={styles.contactButtonText}>Book Appointment</Text>
         </TouchableOpacity>
       </ScrollView>
