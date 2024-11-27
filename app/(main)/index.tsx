@@ -22,10 +22,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
 
 const { width } = Dimensions.get("window");
 
 export default function HomeScreen() {
+  const router = useRouter();
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
@@ -111,6 +114,12 @@ export default function HomeScreen() {
                   styles.actionCard,
                   { backgroundColor: service.color + "22" }
                 ]}
+                onPress={() =>
+                  router.push({
+                    pathname: "/(services)/professionals",
+                    params: { serviceName: service.name }
+                  })
+                }
               >
                 <FontAwesomeIcon
                   icon={service.icon}
