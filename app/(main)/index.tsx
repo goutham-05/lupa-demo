@@ -31,7 +31,6 @@ export default function HomeScreen() {
       <ScrollView contentContainerStyle={styles.container}>
         <View style={[styles.headerBackground, styles.shadow]}>
           <View style={styles.header}>
-            {/* User Icon */}
             <TouchableOpacity style={styles.userIcon}>
               <Image
                 source={{
@@ -41,7 +40,6 @@ export default function HomeScreen() {
               />
             </TouchableOpacity>
 
-            {/* Location Details */}
             <View style={styles.locationContainer}>
               <Text style={styles.locationTitle}>Your Location</Text>
               <View style={styles.locationDetails}>
@@ -50,7 +48,6 @@ export default function HomeScreen() {
               </View>
             </View>
 
-            {/* Search Icon */}
             <TouchableOpacity style={styles.searchIcon}>
               <FontAwesomeIcon icon={faSearch} size={24} color="#6C63FF" />
             </TouchableOpacity>
@@ -79,7 +76,6 @@ export default function HomeScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* Our Services Section */}
         <View style={[styles.servicesContainer, styles.shadow]}>
           <Text style={styles.sectionTitle}>Our Services</Text>
           <View style={styles.servicesGrid}>
@@ -121,13 +117,19 @@ export default function HomeScreen() {
                   size={32}
                   color={service.color}
                 />
-                <Text style={styles.actionText}>{service.name}</Text>
+                <Text
+                  style={styles.actionText}
+                  numberOfLines={2} // Limits to 2 lines
+                  adjustsFontSizeToFit // Dynamically adjusts font size if text overflows
+                  minimumFontScale={0.8} // Sets a minimum scale for font resizing
+                >
+                  {service.name}
+                </Text>
               </TouchableOpacity>
             ))}
           </View>
         </View>
 
-        {/* My Pets Section */}
         <View style={[styles.myPetsContainer, styles.shadow]}>
           <Text style={styles.sectionTitle}>My Pets</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -168,6 +170,32 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+  messageTitle: {
+    fontSize: 26,
+    fontWeight: "700",
+    color: "#333",
+    marginBottom: 8
+  },
+  description: {
+    fontSize: 16,
+    color: "#666",
+    lineHeight: 22
+  },
+  contactButton: {
+    alignSelf: "flex-start",
+    backgroundColor: "#6C63FF",
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    elevation: 2
+  },
+  contactButtonText: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#FFF",
+    textTransform: "uppercase"
+  },
+
   safeArea: {
     flex: 1,
     backgroundColor: "#F9F9F9"
@@ -176,13 +204,12 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     padding: 16
   },
-
   servicesContainer: {
     marginBottom: 32,
     backgroundColor: "#FFFFFF",
     borderRadius: 16,
-    padding: 20,
-    elevation: 2
+    padding: 20, // Ensures equal padding on all sides
+    elevation: 2 // Shadow for a subtle elevation
   },
   messageRow: {
     flexDirection: "row",
@@ -194,35 +221,13 @@ const styles = StyleSheet.create({
     flex: 2,
     paddingRight: 16
   },
-  messageTitle: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#333",
-    marginBottom: 8
-  },
-  description: {
-    fontSize: 16,
-    color: "#555",
-    lineHeight: 22
-  },
+
   petImage: {
     flex: 1,
     width: 100,
     height: 100,
     borderRadius: 50,
     resizeMode: "cover"
-  },
-  contactButton: {
-    backgroundColor: "#6C63FF",
-    borderRadius: 16,
-    paddingVertical: 12,
-    alignItems: "center",
-    elevation: 3
-  },
-  contactButtonText: {
-    color: "#FFF",
-    fontSize: 18,
-    fontWeight: "bold"
   },
 
   shadow: {
@@ -301,19 +306,24 @@ const styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   actionCard: {
-    width: "30%",
-    aspectRatio: 1,
+    width: "32%", // Consistent width
+    aspectRatio: 1, // Maintains square shape
     borderRadius: 12,
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 16
+    justifyContent: "center", // Centers items vertically
+    alignItems: "center", // Centers items horizontally
+    marginBottom: 16, // Space between cards
+    padding: 12 // Ensures equal padding on all sides
   },
   actionText: {
     marginTop: 8,
     fontSize: 14,
     fontWeight: "600",
-    textAlign: "center"
+    textAlign: "center",
+    flexWrap: "wrap", // Ensures text wraps within available space
+    width: "100%", // Ensures text stays within card bounds
+    lineHeight: 16 // Consistent line height
   },
+
   myPetsContainer: {
     backgroundColor: "#FFF",
     borderRadius: 16,
