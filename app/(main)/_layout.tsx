@@ -1,6 +1,7 @@
 import { Tabs } from "expo-router";
 import React from "react";
 import { Platform, StyleSheet, View, Image } from "react-native";
+import * as Animatable from "react-native-animatable";
 
 import { HapticTab } from "@/components/HapticTab";
 import { IconSymbol } from "@/components/ui/IconSymbol";
@@ -57,14 +58,19 @@ export default function TabLayout() {
         options={{
           title: "", // Leave the title blank
           tabBarIcon: () => (
-            <View style={styles.circleTab}>
+            <Animatable.View
+              animation="pulse"
+              iterationCount="infinite"
+              duration={800}
+              style={styles.circleTab}
+            >
               <Image
                 source={{
                   uri: "https://media.istockphoto.com/id/1333222351/photo/4k-resolution-of-digital-eye-wave-lines-stock-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=vxCUZmHNli-6m54P2budQrY39899aiHycRMiKH1Hs3k="
                 }}
                 style={styles.premiumIcon}
               />
-            </View>
+            </Animatable.View>
           ),
           tabBarStyle: {
             position: "absolute"
