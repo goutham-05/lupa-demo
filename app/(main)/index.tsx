@@ -116,7 +116,7 @@ export default function HomeScreen() {
                 ]}
                 onPress={() =>
                   router.push({
-                    pathname: "/(services)/professionals",
+                    pathname: "/(main)/professionals",
                     params: { serviceName: service.name }
                   })
                 }
