@@ -119,9 +119,9 @@ export default function HomeScreen() {
                 />
                 <Text
                   style={styles.actionText}
-                  numberOfLines={2} // Limits to 2 lines
-                  adjustsFontSizeToFit // Dynamically adjusts font size if text overflows
-                  minimumFontScale={0.8} // Sets a minimum scale for font resizing
+                  numberOfLines={2}
+                  adjustsFontSizeToFit
+                  minimumFontScale={0.8}
                 >
                   {service.name}
                 </Text>
@@ -129,7 +129,6 @@ export default function HomeScreen() {
             ))}
           </View>
         </View>
-
         <View style={[styles.myPetsContainer, styles.shadow]}>
           <Text style={styles.sectionTitle}>My Pets</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -208,8 +207,8 @@ const styles = StyleSheet.create({
     marginBottom: 32,
     backgroundColor: "#FFFFFF",
     borderRadius: 16,
-    padding: 20, // Ensures equal padding on all sides
-    elevation: 2 // Shadow for a subtle elevation
+    padding: 20,
+    elevation: 2
   },
   messageRow: {
     flexDirection: "row",
@@ -306,22 +305,22 @@ const styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   actionCard: {
-    width: "32%", // Consistent width
-    aspectRatio: 1, // Maintains square shape
+    width: "32%",
+    aspectRatio: 1,
     borderRadius: 12,
-    justifyContent: "center", // Centers items vertically
-    alignItems: "center", // Centers items horizontally
-    marginBottom: 16, // Space between cards
-    padding: 12 // Ensures equal padding on all sides
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 16,
+    padding: 12
   },
   actionText: {
     marginTop: 8,
     fontSize: 14,
     fontWeight: "600",
     textAlign: "center",
-    flexWrap: "wrap", // Ensures text wraps within available space
-    width: "100%", // Ensures text stays within card bounds
-    lineHeight: 16 // Consistent line height
+    flexWrap: "wrap",
+    width: "100%",
+    lineHeight: 16
   },
 
   myPetsContainer: {
@@ -350,8 +349,11 @@ const styles = StyleSheet.create({
   },
   petDetails: {
     color: "#6C6C6C",
-    fontSize: 14,
+    fontSize: 12,
     textAlign: "center",
-    lineHeight: 20
+    lineHeight: 18,
+    marginTop: 4,
+    flexWrap: "wrap",
+    width: "100%"
   }
 });
