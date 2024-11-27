@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   },
   userBubble: {
     alignSelf: "flex-end",
-    backgroundColor: "#DCF8C6"
+    backgroundColor: "#03A9F4"
   },
   aiBubble: {
     alignSelf: "flex-start",

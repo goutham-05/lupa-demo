@@ -11,6 +11,7 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import Feather from "@expo/vector-icons/Feather";
 
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -95,7 +96,7 @@ export default function TabLayout() {
         options={{
           title: "Settings",
           tabBarIcon: ({ color }) => (
-            <Feather name="settings" size={24} color={color || "#666"} />
+            <Ionicons name="settings" size={24} color={color} />
           )
         }}
       />
